@@ -2093,13 +2093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fa270dd5488a2418010420a67f515f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerSpeed: 10
-  _lives: 5
-  _coins: 0
   _startPosition: {x: -5, y: 0, z: 0}
-  _canBounce: 1
-  _gravity: -1.6
-  _initialBounceVelocity: 0.4
 --- !u!143 &819148780
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3604,9 +3598,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 740d1d3dd9ba9b645940d17dcf645e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tutorialBackdrop: {fileID: 104101016}
-  _tutorialStartText: {fileID: 1652725173}
-  _inTutorial: 1
 --- !u!1001 &1421843946
 PrefabInstance:
   m_ObjectHideFlags: 0

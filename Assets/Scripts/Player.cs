@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private float _playerSpeed = 10;
+    private float _playerSpeed = 8.5f;
     int _lives = 5, _coins = 0;
     int _tutorialCounter = 0;
 
@@ -17,8 +17,8 @@ public class Player : MonoBehaviour
     private bool _canBounce = true;
     private bool _tutorialLevel = false;
     
-    private float _gravity = -0.4f;
-    private float _initialBounceVelocity = 0.255f;
+    private float _gravity = -1.4f;
+    private float _initialBounceVelocity = 0.4f;
 
     private UIManager _uiManager;
     private CharacterController _char;
