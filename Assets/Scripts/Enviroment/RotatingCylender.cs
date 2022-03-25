@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class RotatingCylender : MonoBehaviour
 {
+    [SerializeField]
+    private float _speed = 50;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,18 +16,8 @@ public class MainMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        float velocity = _speed * Time.deltaTime;
+
+        transform.Rotate(0, velocity, 0);
     }
-
-    public void LoadTutorial()
-    {
-        SceneManager.LoadScene("Tutorial");
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-
-
 }

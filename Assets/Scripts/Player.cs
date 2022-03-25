@@ -8,14 +8,14 @@ public class Player : MonoBehaviour
     int _lives = 5, _coins = 0;
     int _tutorialCounter = 0;
 
-
     private Vector3 _velocity;
-    public Vector3 _startPosition = new Vector3(-5, 0, 0);
+    private Vector3 _startPosition = new Vector3(-5, 0, 0);
 
     private bool _canMove = true;
-    private bool _isDead = false;
+    private bool _isGameOver = false;
     private bool _canBounce = true;
     private bool _tutorialLevel = false;
+    private bool _doneOutOfBoundsTutorial = true;
     
     private float _gravity = -1.4f;
     private float _initialBounceVelocity = 0.4f;
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
 
     void CalculateMovement()
     {
-        if (!_isDead && _canMove)
+        if (!_isGameOver && _canMove)
         {
 
 
@@ -104,10 +104,20 @@ public class Player : MonoBehaviour
             TriggerGameOver();
     }
 
+    void IncrementLives()
+    {
+        _lives++;
+        _uiManager.ManageLives(_lives);
+    }
+
     public void AddCoin()
     {
         _coins++;
         _uiManager.ManageCoins(_coins);
+        if (_coins == 3)
+        {
+            IncrementLives();
+        }
     }
 
     public void SetStartingPoint(Vector3 checkpoint)
@@ -119,7 +129,7 @@ public class Player : MonoBehaviour
     {
         _uiManager.GameOver();
         _meshRend.enabled = false;
-        _isDead = true;
+        _isGameOver = true;
     } 
 
     public void GroundPlayer(bool grounded)
@@ -146,17 +156,13 @@ public class Player : MonoBehaviour
         _canMove = true;
     }
 
-    public void SetCanMove(bool move)
-    {
-        _canMove = move;
-    }
-    public void IncrementTutorialCounter()
-    {
-        _tutorialCounter++;
-    }
-    public int ReturnTutorialCounter()
-    {
-        return _tutorialCounter;
-    }
-   
+    public void SetCanMove(bool move) { _canMove = move; }
+    public void SetCanBounce(bool bounce) { _canBounce = bounce; }
+    public void IncrementTutorialCounter() { _tutorialCounter++; }
+    public int GetTutorialCounter() { return _tutorialCounter; }
+    public void SetTutorialLevel(bool setLevel) { _tutorialLevel = setLevel; }
+    public bool GetTutorialLevel() { return _tutorialLevel; }
+    public bool GetGameOver() { return _isGameOver; }
+    public void SetOutOfBoundsTutorial(bool set) { _doneOutOfBoundsTutorial = set; }
+    public bool GetOutOfBoundsTutorial() { return _doneOutOfBoundsTutorial; }
 }
