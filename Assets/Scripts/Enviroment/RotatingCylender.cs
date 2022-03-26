@@ -19,5 +19,7 @@ public class RotatingCylender : MonoBehaviour
         float velocity = _speed * Time.deltaTime;
 
         transform.Rotate(0, velocity, 0);
+        //Quaternion turn = Quaternion.Euler(-velocity, -90, -90);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, turn, velocity);
     }
 }

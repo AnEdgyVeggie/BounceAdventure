@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
             TriggerGameOver();
     }
 
-    void IncrementLives()
+    public void IncrementLives()
     {
         _lives++;
         _uiManager.ManageLives(_lives);

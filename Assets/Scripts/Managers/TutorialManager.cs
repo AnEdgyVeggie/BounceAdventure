@@ -15,6 +15,7 @@ public class TutorialManager : MonoBehaviour
     {
         _anim = GameObject.Find("Tutorial").GetComponent<Animator>();
         _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         _player = GameObject.Find("Player").GetComponent<Player>();
         if (_player == null) { Debug.LogError("PLAYER is NULL in TUTORIAL MANAGER script"); }
     }
@@ -99,10 +100,10 @@ public class TutorialManager : MonoBehaviour
         _anim.SetBool("FadeGround1", true);
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
         _anim.SetBool("FadeGround1", false);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
         _anim.SetBool("FadeGround2", true);
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1f);
         _anim.SetBool("FadeGround2", false);
         _player.IncrementTutorialCounter();
         _player.SetTutorialLevel(false);
@@ -134,12 +135,49 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator TutorialCompleteRoutine()
     {
+
+        _anim.SetBool("FadeFinish1", true);
+        yield return new WaitForSeconds(5);
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+        _anim.SetBool("FadeFinish1", false);
+        yield return new WaitForSeconds(2.5f);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+        _anim.SetBool("FadeFinish2", true);
+        yield return new WaitForSeconds(2.5f);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+        _anim.SetBool("FadeFinish2", false);
+        yield return new WaitForSeconds(1);
+        _anim.SetBool("FadeReturn", true);
+        yield return new WaitForSeconds(2.5f);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+        _anim.SetBool("FadeReturn", false);
+        yield return new WaitForSeconds(2);
+        _gm.ReturnToMainMenu();
     }
 
     IEnumerator TutorialPassedRoutine()
     {
+        _anim.SetBool("FadeFinish1", true);
+        yield return new WaitForSeconds(5);
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
-
+        _anim.SetBool("FadeFinish1", false);
+        yield return new WaitForSeconds(2.5f);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+        _anim.SetBool("FadeFinish2", true);
+        yield return new WaitForSeconds(2.5f);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+        _anim.SetBool("FadeFinish2", false);
+        yield return new WaitForSeconds(1);
+        _anim.SetBool("OptionalPass", true);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+        _anim.SetBool("OptionalPass", false);
+        _player.IncrementLives();
+        yield return new WaitForSeconds(1f);
+        _anim.SetBool("FadeReturn", true);
+        yield return new WaitForSeconds(2.5f);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+        _anim.SetBool("FadeReturn", false);
+        yield return new WaitForSeconds(2);
+        _gm.ReturnToMainMenu();
     }
 }
