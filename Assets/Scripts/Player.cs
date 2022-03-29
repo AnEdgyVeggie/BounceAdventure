@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private float _playerSpeed = 8.5f;
+    [SerializeField]
+    private float _playerSpeed = 8.5f, _rollSpeed = 10;
     int _lives = 5, _coins = 0;
     int _tutorialCounter = 0;
 
@@ -66,18 +67,20 @@ public class Player : MonoBehaviour
             float direction = horizontalMove * _playerSpeed * Time.deltaTime;
             _velocity.x = direction;
 
+            if (_velocity.x > 0)
+            {
+                transform.Rotate(0, 0, -_rollSpeed);
+            }
+            else if (_velocity.x < 0)
+            {
+                transform.Rotate(0, 0, _rollSpeed);
+            }
+
             if (_char.isGrounded && _canBounce)
             {
                 _velocity.y = _initialBounceVelocity;
             }
 
-            if (transform.position.x <= -16)
-            {
-                if (horizontalMove < 0)
-                {
-                    _velocity.x = 0;
-                }
-            }
             _char.Move(_velocity);
         }
     }

@@ -17,15 +17,19 @@ public class MainMenu : MonoBehaviour
         
     }
 
-    public void LoadTutorial()
-    {
-        SceneManager.LoadScene("Tutorial");
-    }
-
     public void QuitGame()
     {
         Application.Quit();
     }
 
+    public void LoadTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+    }
+
+    public void LoadLevelOne()
+    {
+        SceneManager.LoadScene("Level1");
+    }
 
 }
